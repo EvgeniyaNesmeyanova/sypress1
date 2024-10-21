@@ -6,6 +6,12 @@ beforeEach(()=>{
   cy.visit('/');
 })
 
+describe('Отображение страницы', () => {
+  it('Тест на отображение страницы', () => {
+    cy.contains("Books list").should('be.visible',true)
+  })
+})
+
 describe('Тестирование библиотеки', () => {
   it('Тест на логин', () => {
     cy.login('bropet@mail.ru','123')
@@ -42,4 +48,22 @@ describe('Тестирование библиотеки', () => {
     })
   })
 
+})
+
+describe('Добавление книги при создании в избранное', () => {
+  beforeEach(()=>{
+  cy.login('bropet@mail.ru','123')
+  })
+  it('Тест на добавление новой книги', () => {
+    cy.newbook('Сказки','Бажов')
+    cy.contains("Add new").should('be.visible',true)
+  })
+
+  it.skip('Тест на удаление первой книги из избранного', () => {
+    cy.get('h4').click()
+    cy.contains("Delete").should('be.visible',true)
+    
+    cy.contains("Delete from favorite").click()
+    
+  })
 })

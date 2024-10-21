@@ -18,6 +18,20 @@
         cy.get('#pass').type(password)
     cy.contains('Submit').click()
   })
+
+  Cypress.Commands.add('newbook', (title, autor) => {
+    cy.contains('Add new').click()
+    if(title)
+      cy.get('#title').type(title)
+    if(autor)
+      cy.get('#authors').type(autor)
+    cy.get('.form-check-label').click()
+    cy.contains('Submit').click()
+  })
+
+//  Cypress.Commands.add('infavorites', (title, autor) => {
+//    cy.contains('Add to favorite').click()
+//  })
 //
 //
 // -- This is a child command --
